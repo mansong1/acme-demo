@@ -28,7 +28,6 @@ module "s3" {
   version = "3.14.0"
 
   bucket = "${var.bucketname}-${random_string.random.id}"
-  acl    = "private"
 }
   
 output "s3_bucket_arn" {
