@@ -21,7 +21,6 @@ resource "random_string" "random" {
   special = false
   lower   = true
   upper   = false
-  numeric  = true
 }
 
 module "s3" {
