@@ -1,0 +1,19 @@
+version: 2
+
+deploy:
+  steps:
+    setupVariables: &login-k8s
+      after: 
+        - name: Retrieve K8s Config
+          run: |
+            aws eks update-kubeconfig --name $CLUSTER_NAME --region $REGION 
+            cat ~/.kube/config
+    # helmDiff:
+    #   before:
+    #     - name: Update Repo
+    #       run: |
+    #         helm repo update
+    #         helm repo list
+destroy:
+  steps:
+    setupVariables: *login-k8s
