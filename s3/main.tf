@@ -13,7 +13,7 @@ provider "aws" {
 
 variable "bucketname" {
   type    = string
-  default = "mansong-iacm-bucket-pushgaming"
+  default = "mansong-iacm-bucket"
 }
 
 resource "random_string" "random" {
