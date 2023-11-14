@@ -19,6 +19,10 @@ variable "vpc_id" {
 
 variable "tags" {
   type = map
+  default     = {
+    project     = "mansong",
+    environment = "dev"
+  }
 }
 
 variable "ebs_size" {
