@@ -11,7 +11,7 @@ module "acme-ec2" {
 
   #key_name               = "AWay"
   #vpc_security_group_ids = [data.aws_security_group.web_server.id]
-  #subnet_ids = data.aws_subnet_ids.selected.ids
+  subnet_ids = data.aws_subnet_ids.selected.ids
 
   associate_public_ip_address = true
 
@@ -60,6 +60,6 @@ data "aws_vpc" "selected" {
   id = var.vpc_id
 }
 
-#data "aws_subnet_ids" "selected" {
-#  vpc_id = data.aws_vpc.selected.id
-#}
+data "aws_subnet_ids" "selected" {
+  vpc_id = data.aws_vpc.selected.id
+}
