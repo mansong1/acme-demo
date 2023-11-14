@@ -1,21 +1,34 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "3.41.0"
+    }
+  }
+}
+
+provider "aws" {
+  region = "us-west-2"
+}
+
 module "acme-ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 2.0"
 
-  name = var.name
+  name = "Turbo Managed ec2"
+
 
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
   subnet_ids = data.aws_subnet_ids.selected.ids
 
-  associate_public_ip_address = true
+  associate_public_ip_address = false
 
   tags = {
     Terraform = "true"
     Owner     = "acme demo org"
-    Test      = "new tag"
-    Demo      = "Nov 10 12:19pm PT"
+    Demo      = "Turbo"
   }
 }
 
@@ -31,9 +44,18 @@ data "aws_ami" "ubuntu" {
 }
 
 data "aws_vpc" "selected" {
-  id = var.vpc_id
+  id = "vpc-0d806cc612e6cf9e3"
 }
 
 data "aws_subnet_ids" "selected" {
   vpc_id = data.aws_vpc.selected.id
+}
+
+variable "instance_type" {
+  default = "t3a.micro"
+  type    = string
+}
+
+output "instance_type" {
+  value = var.instance_type
 }
