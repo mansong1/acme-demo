@@ -1,6 +1,6 @@
 variable "name" {
   type    = string
-  default = "env0-acme-ec2"
+  default = "mansong-iacm-ec2"
 }
 
 variable "instance_count" {
